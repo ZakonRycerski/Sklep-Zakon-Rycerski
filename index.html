@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sklep | Zakon Rycerski</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #11151b;
+  color: #eee8d9;
+  font-family: Georgia, serif;
+}
+
+header {
+  text-align: center;
+  padding: 45px 15px;
+  background: linear-gradient(135deg, #182536, #10141b);
+  border-bottom: 2px solid #b58a42;
+}
+
+header h1 {
+  color: #e4bd70;
+  font-size: clamp(28px, 6vw, 46px);
+  margin: 0 0 12px;
+  letter-spacing: 3px;
+}
+
+header p { color: #c7c0b2; }
+
+nav {
+  background: #1b222c;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #59472d;
+}
+
+nav a {
+  color: #e4bd70;
+  text-decoration: none;
+  margin: 0 13px;
+}
+
+main {
+  max-width: 1050px;
+  margin: 35px auto;
+  padding: 0 18px;
+}
+
+h2 {
+  color: #e4bd70;
+  border-bottom: 1px solid #59472d;
+  padding-bottom: 12px;
+}
+
+.balance {
+  background: linear-gradient(135deg, #222d3b, #18202b);
+  border: 1px solid #9b783d;
+  border-radius: 12px;
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 35px;
+}
+
+.balance strong {
+  display: block;
+  font-size: 30px;
+  color: #e4bd70;
+  margin-top: 12px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  background: #1b222c;
+  border: 1px solid #51432f;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+}
+
+.product .symbol {
+  font-size: 55px;
+  margin: 8px;
+}
+
+.product h3 { color: #e4bd70; }
+
+.product p {
+  color: #c3bdaf;
+  min-height: 45px;
+}
+
+button {
+  background: #927039;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: not-allowed;
+  opacity: .7;
+}
+
+.info {
+  margin-top: 35px;
+  padding: 20px;
+  background: #1b222c;
+  border-left: 3px solid #b58a42;
+  color: #c3bdaf;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #8f8a80;
+  border-top: 1px solid #51432f;
+  margin-top: 50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚔ ZAKON RYCERSKI ⚔</h1>
+  <p>Oficjalny sklep serwera Minecraft</p>
+  <p>Zdobywaj żetony i odbieraj nagrody!</p>
+</header>
+
+<nav>
+  <a href="#glowna">Strona główna</a>
+  <a href="#sklep">Sklep</a>
+  <a href="#informacje">Informacje</a>
+</nav>
+
+<main id="glowna">
+
+  <section class="balance">
+    <h2>Twoje Rycerskie Żetony</h2>
+    <p>Saldo zostanie wyświetlone po połączeniu konta Minecraft.</p>
+    <strong>⚔ -- żetonów</strong>
+  </section>
+
+  <section id="sklep">
+    <h2>🛡 Sklep z nagrodami</h2>
+
+    <div class="products">
+
+      <article class="product">
+        <div class="symbol">🛡️</div>
+        <h3>Ochrona przed mobami</h3>
+        <p>Ochrona na 5 minut.</p>
+        <p><b>Cena: do ustalenia</b></p>
+        <button disabled>Wkrótce</button>
+      </article>
+
+      <article class="product">
+        <div class="symbol">⚔️</div>
+        <h3>Nagroda rycerska</h3>
+        <p>Dodatkowe nagrody dla rycerzy.</p>
+        <p><b>W przygotowaniu</b></p>
+        <button disabled>Wkrótce</button>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="info" id="informacje">
+    <h2>Jak zdobywać żetony?</h2>
+    <p>
+      Graj aktywnie na serwerze Zakon Rycerski.
+      Za każde 5 minut aktywnej gry otrzymasz
+      10 Rycerskich Żetonów!
+    </p>
+    <p>
+      AFK nie daje żetonów. Twoje saldo będzie
+      dostępne po połączeniu strony z serwerem.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  ⚔ ZAKON RYCERSKI ⚔
+  <p>Oficjalny sklep serwera</p>
+</footer>
+
+</body>
+</html>
