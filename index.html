@@ -7,127 +7,28 @@
 <title>Sklep | Zakon Rycerski</title>
 <style>
 * { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: #11151b;
-  color: #eee8d9;
-  font-family: Georgia, serif;
-}
-
-header {
-  text-align: center;
-  padding: 45px 15px;
-  background: linear-gradient(135deg, #182536, #10141b);
-  border-bottom: 2px solid #b58a42;
-}
-
-header h1 {
-  color: #e4bd70;
-  font-size: clamp(28px, 6vw, 46px);
-  margin: 0 0 12px;
-  letter-spacing: 3px;
-}
-
+body { margin: 0; background: #11151b; color: #eee8d9; font-family: Georgia, serif; }
+header { text-align: center; padding: 45px 15px; background: linear-gradient(135deg, #182536, #10141b); border-bottom: 2px solid #b58a42; }
+header h1 { color: #e4bd70; font-size: clamp(28px, 6vw, 46px); margin: 0 0 12px; letter-spacing: 3px; }
 header p { color: #c7c0b2; }
-
-nav {
-  background: #1b222c;
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid #59472d;
-}
-
-nav a {
-  color: #e4bd70;
-  text-decoration: none;
-  margin: 0 13px;
-}
-
-main {
-  max-width: 1050px;
-  margin: 35px auto;
-  padding: 0 18px;
-}
-
-h2 {
-  color: #e4bd70;
-  border-bottom: 1px solid #59472d;
-  padding-bottom: 12px;
-}
-
-.balance {
-  background: linear-gradient(135deg, #222d3b, #18202b);
-  border: 1px solid #9b783d;
-  border-radius: 12px;
-  text-align: center;
-  padding: 25px;
-  margin-bottom: 35px;
-}
-
-.balance strong {
-  display: block;
-  font-size: 30px;
-  color: #e4bd70;
-  margin-top: 12px;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-}
-
-.product {
-  background: #1b222c;
-  border: 1px solid #51432f;
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-}
-
-.product .symbol {
-  font-size: 55px;
-  margin: 8px;
-}
-
+nav { background: #1b222c; padding: 15px; text-align: center; border-bottom: 1px solid #59472d; }
+nav a { color: #e4bd70; text-decoration: none; margin: 0 13px; }
+nav a:hover { color: #fff0c2; }
+main { max-width: 1050px; margin: 35px auto; padding: 0 18px; }
+h2 { color: #e4bd70; border-bottom: 1px solid #59472d; padding-bottom: 12px; }
+.balance { background: linear-gradient(135deg, #222d3b, #18202b); border: 1px solid #9b783d; border-radius: 12px; text-align: center; padding: 25px; margin-bottom: 35px; }
+.balance strong { display: block; font-size: 30px; color: #e4bd70; margin-top: 12px; }
+#api-status { color: #c3bdaf; font-size: 14px; margin-top: 15px; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+.product { background: #1b222c; border: 1px solid #51432f; border-radius: 12px; padding: 25px; text-align: center; }
+.product .symbol { font-size: 55px; margin: 8px; }
 .product h3 { color: #e4bd70; }
-
-.product p {
-  color: #c3bdaf;
-  min-height: 45px;
-}
-
-button {
-  background: #927039;
-  color: white;
-  border: 0;
-  border-radius: 6px;
-  padding: 12px 20px;
-  font-size: 15px;
-  cursor: not-allowed;
-  opacity: .7;
-}
-
-.info {
-  margin-top: 35px;
-  padding: 20px;
-  background: #1b222c;
-  border-left: 3px solid #b58a42;
-  color: #c3bdaf;
-  line-height: 1.6;
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: #8f8a80;
-  border-top: 1px solid #51432f;
-  margin-top: 50px;
-}
+.product p { color: #c3bdaf; min-height: 45px; }
+button { background: #927039; color: white; border: 0; border-radius: 6px; padding: 12px 20px; font-size: 15px; cursor: not-allowed; opacity: .7; }
+.info { margin-top: 35px; padding: 20px; background: #1b222c; border-left: 3px solid #b58a42; color: #c3bdaf; line-height: 1.6; }
+footer { text-align: center; padding: 25px; color: #8f8a80; border-top: 1px solid #51432f; margin-top: 50px; }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -143,18 +44,16 @@ footer {
 </nav>
 
 <main id="glowna">
-
   <section class="balance">
     <h2>Twoje Rycerskie Żetony</h2>
-    <p>Saldo zostanie wyświetlone po połączeniu konta Minecraft.</p>
-    <strong>⚔ -- żetonów</strong>
+    <p>Saldo pojawi się po połączeniu konta Minecraft.</p>
+    <strong id="balance">⚔ -- żetonów</strong>
+    <p id="api-status">Łączenie ze sklepem...</p>
   </section>
 
   <section id="sklep">
     <h2>🛡 Sklep z nagrodami</h2>
-
     <div class="products">
-
       <article class="product">
         <div class="symbol">🛡️</div>
         <h3>Ochrona przed mobami</h3>
@@ -170,7 +69,6 @@ footer {
         <p><b>W przygotowaniu</b></p>
         <button disabled>Wkrótce</button>
       </article>
-
     </div>
   </section>
 
@@ -186,13 +84,53 @@ footer {
       dostępne po połączeniu strony z serwerem.
     </p>
   </section>
-
 </main>
 
 <footer>
   ⚔ ZAKON RYCERSKI ⚔
   <p>Oficjalny sklep serwera</p>
 </footer>
+
+<script>
+const SUPABASE_URL =
+  "https://ojhhynjtoueuvqalwbld.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_scN1OGrwcB1qREMMz4q8Mg_7cbgtkno";
+
+async function checkShopAPI() {
+  const status = document.getElementById("api-status");
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/functions/v1/shop-api`,
+      {
+        method: "GET",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      status.textContent = "Połączono ze sklepem!";
+      status.style.color = "#8fd49a";
+    } else {
+      status.textContent = "Błąd połączenia ze sklepem.";
+      status.style.color = "#e58b80";
+    }
+  } catch (error) {
+    status.textContent = "Nie udało się połączyć ze sklepem.";
+    status.style.color = "#e58b80";
+    console.error("Shop API error:", error);
+  }
+}
+
+checkShopAPI();
+</script>
 
 </body>
 </html>
