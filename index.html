@@ -1,38 +1,300 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17120d">
 <title>Sklep | Zakon Rycerski</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap');
+
+:root {
+  --night: #17120d;
+  --night-2: #211910;
+  --wood: #302116;
+  --wood-light: #49321f;
+  --parchment: #d8c49a;
+  --parchment-light: #eadbb8;
+  --ink: #2b2117;
+  --gold: #c5a15b;
+  --gold-light: #e2c47e;
+  --muted: #b8a98e;
+  --line: rgba(197,161,91,.55);
+}
 * { box-sizing: border-box; }
-body { margin: 0; background: #11151b; color: #eee8d9; font-family: Georgia, serif; }
-header { text-align: center; padding: 45px 15px; background: linear-gradient(135deg, #182536, #10141b); border-bottom: 2px solid #b58a42; }
-header h1 { color: #e4bd70; font-size: clamp(28px, 6vw, 46px); margin: 0 0 12px; letter-spacing: 3px; }
-header p { color: #c7c0b2; }
-nav { background: #1b222c; padding: 15px; text-align: center; border-bottom: 1px solid #59472d; }
-nav a { color: #e4bd70; text-decoration: none; margin: 0 13px; }
-nav a:hover { color: #fff0c2; }
-main { max-width: 1050px; margin: 35px auto; padding: 0 18px; }
-h2 { color: #e4bd70; border-bottom: 1px solid #59472d; padding-bottom: 12px; }
-.balance { background: linear-gradient(135deg, #222d3b, #18202b); border: 1px solid #9b783d; border-radius: 12px; text-align: center; padding: 25px; margin-bottom: 35px; }
-.balance strong { display: block; font-size: 30px; color: #e4bd70; margin-top: 12px; }
-#api-status { color: #c3bdaf; font-size: 14px; margin-top: 15px; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--parchment-light);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 18px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(112,76,37,.24), transparent 48%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 2px, transparent 2px 7px),
+    linear-gradient(145deg, #100d09, #21180f 52%, #120f0b);
+  min-height: 100vh;
+}
+a { color: inherit; }
+.topbar {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 10px max(20px, calc((100% - 1120px)/2));
+  background: rgba(12,10,8,.82);
+  border-bottom: 1px solid rgba(197,161,91,.35);
+}
+.login-note { color: #b8a98e; font-size: 15px; }
+.login-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px;
+  color: #f4e6c5;
+  background: linear-gradient(#604326, #382719);
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: not-allowed;
+  opacity: .8;
+}
+.login-button .g { font-family: Arial, sans-serif; font-weight: 700; font-size: 17px; color: #fff; }
+header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 48px 18px 43px;
+  background:
+    linear-gradient(rgba(15,12,9,.60), rgba(15,12,9,.82)),
+    repeating-linear-gradient(135deg, #382719 0 12px, #302116 12px 24px);
+  border-bottom: 4px double var(--gold);
+}
+header:before, header:after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(226,196,126,.22);
+  font-size: clamp(65px, 12vw, 150px);
+}
+header:before { left: max(4%, calc((100% - 1080px)/2)); }
+header:after { right: max(4%, calc((100% - 1080px)/2)); }
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--gold-light);
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+header h1 {
+  margin: 0;
+  color: #f0d99f;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(29px, 6vw, 48px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 3px 0 #4a301b, 0 6px 18px #000;
+}
+header p { margin: 11px 0 0; color: #d2c09c; font-size: 19px; }
+.crest {
+  width: 58px;
+  height: 68px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  color: #f0d99f;
+  font-size: 30px;
+  background: linear-gradient(145deg, #6d4b29, #24180f);
+  border: 2px solid var(--gold);
+  clip-path: polygon(0 0,100% 0,100% 72%,50% 100%,0 72%);
+  filter: drop-shadow(0 4px 4px #000);
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  padding: 0 12px;
+  background: linear-gradient(#49321f, #2c1e14);
+  border-bottom: 1px solid #806239;
+  box-shadow: 0 5px 16px rgba(0,0,0,.35);
+}
+nav a {
+  display: inline-block;
+  padding: 15px 23px;
+  color: #e4cc98;
+  text-decoration: none;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-left: 1px solid rgba(197,161,91,.16);
+}
+nav a:last-child { border-right: 1px solid rgba(197,161,91,.16); }
+nav a:hover { background: rgba(226,196,126,.12); color: #fff0c2; }
+main { max-width: 1050px; margin: 38px auto 0; padding: 0 18px; }
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 20px;
+  color: #e5c77f;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(20px, 3vw, 25px);
+  letter-spacing: 1px;
+}
+.section-title:after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.balance {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 28px 24px;
+  text-align: center;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.35), transparent 65%),
+    repeating-linear-gradient(0deg, rgba(80,53,26,.035) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg, #e4d3ad, #c9b184);
+  border: 5px double #6d4c2b;
+  outline: 1px solid var(--gold);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35), inset 0 0 25px rgba(91,59,28,.15);
+}
+.balance:before, .balance:after {
+  content: "❧";
+  position: absolute;
+  top: 8px;
+  color: #8a6637;
+  font-size: 26px;
+}
+.balance:before { left: 13px; }
+.balance:after { right: 13px; transform: scaleX(-1); }
+.balance h2 {
+  margin: 0;
+  color: #49321f;
+  border: 0;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.balance p { margin: 8px 0; color: #59432b; }
+.balance strong {
+  display: block;
+  margin-top: 8px;
+  color: #6b481e;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 31px;
+}
+#api-status { margin-top: 14px; font-size: 15px; }
 .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
-.product { background: #1b222c; border: 1px solid #51432f; border-radius: 12px; padding: 25px; text-align: center; }
-.product .symbol { font-size: 55px; margin: 8px; }
-.product h3 { color: #e4bd70; }
-.product p { color: #c3bdaf; min-height: 45px; }
-button { background: #927039; color: white; border: 0; border-radius: 6px; padding: 12px 20px; font-size: 15px; cursor: not-allowed; opacity: .7; }
-.info { margin-top: 35px; padding: 20px; background: #1b222c; border-left: 3px solid #b58a42; color: #c3bdaf; line-height: 1.6; }
-footer { text-align: center; padding: 25px; color: #8f8a80; border-top: 1px solid #51432f; margin-top: 50px; }
+.product {
+  position: relative;
+  overflow: hidden;
+  padding: 25px 22px 24px;
+  text-align: center;
+  color: #e7d7b4;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.035), transparent 42%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 2px, transparent 2px 8px),
+    linear-gradient(145deg, #3b291b, #21170f);
+  border: 3px double #8b6b3d;
+  box-shadow: 0 9px 20px rgba(0,0,0,.3), inset 0 0 22px rgba(0,0,0,.22);
+}
+.product:before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(197,161,91,.22);
+  pointer-events: none;
+}
+.product .symbol {
+  width: 86px;
+  height: 86px;
+  margin: 2px auto 13px;
+  display: grid;
+  place-items: center;
+  color: #e4c783;
+  font-size: 43px;
+  background: radial-gradient(circle, #70502d, #2a1b10 72%);
+  border: 2px solid #a78349;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(197,161,91,.10), inset 0 0 16px #120c07;
+}
+.product h3 {
+  margin: 8px 0;
+  color: #e9cb83;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 17px;
+}
+.product p { color: #c9b995; min-height: 27px; margin: 9px 0; }
+.product b { color: #f0d99f; }
+button {
+  padding: 11px 20px;
+  color: #f1dfb6;
+  background: linear-gradient(#79552f, #49301b);
+  border: 1px solid #c5a15b;
+  border-radius: 2px;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: not-allowed;
+  opacity: .72;
+}
+.info {
+  margin-top: 40px;
+  padding: 25px 28px;
+  color: #392a1b;
+  background:
+    repeating-linear-gradient(0deg, rgba(83,56,29,.04) 0 1px, transparent 1px 5px),
+    linear-gradient(135deg, #d9c69e, #bfa77a);
+  border: 5px double #6d4c2b;
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+  line-height: 1.65;
+}
+.info .section-title { color: #49321f; }
+.info .section-title:after { background: linear-gradient(90deg, #8b6b3d, transparent); }
+.info p { margin: 9px 0; }
+footer {
+  margin-top: 55px;
+  padding: 27px 18px;
+  text-align: center;
+  color: #b8a98e;
+  background: #100d09;
+  border-top: 3px double #806239;
+}
+footer strong { display: block; color: #e5c77f; font-family: 'Cinzel', Georgia, serif; letter-spacing: 2px; }
+footer p { margin: 8px 0 0; }
+@media (max-width: 600px) {
+  .topbar { justify-content: center; }
+  .login-note { display: none; }
+  header { padding: 38px 14px; }
+  header:before, header:after { opacity: .4; }
+  nav a { padding: 13px 12px; font-size: 11px; }
+  main { margin-top: 25px; }
+  .balance { padding: 25px 16px; }
+  .info { padding: 20px; }
+}
 </style>
 </head>
 <body>
 
+<div class="topbar">
+  <span class="login-note">Witaj w królestwie, wędrowcze</span>
+  <button class="login-button" type="button" disabled title="Logowanie Google skonfigurujemy w kolejnym kroku">
+    <span class="g">G</span> ZALOGUJ SIĘ
+  </button>
+</div>
+
 <header>
-  <h1>⚔ ZAKON RYCERSKI ⚔</h1>
+  <div class="crest">⚔</div>
+  <p class="eyebrow">Królestwo • Honor • Braterstwo</p>
+  <h1>ZAKON RYCERSKI</h1>
   <p>Oficjalny sklep serwera Minecraft</p>
   <p>Zdobywaj żetony i odbieraj nagrody!</p>
 </header>
@@ -52,7 +314,7 @@ footer { text-align: center; padding: 25px; color: #8f8a80; border-top: 1px soli
   </section>
 
   <section id="sklep">
-    <h2>🛡 Sklep z nagrodami</h2>
+    <h2 class="section-title">Sklep z nagrodami</h2>
     <div class="products">
       <article class="product">
         <div class="symbol">🛡️</div>
@@ -61,7 +323,6 @@ footer { text-align: center; padding: 25px; color: #8f8a80; border-top: 1px soli
         <p><b>Cena: do ustalenia</b></p>
         <button disabled>Wkrótce</button>
       </article>
-
       <article class="product">
         <div class="symbol">⚔️</div>
         <h3>Nagroda rycerska</h3>
@@ -73,7 +334,7 @@ footer { text-align: center; padding: 25px; color: #8f8a80; border-top: 1px soli
   </section>
 
   <section class="info" id="informacje">
-    <h2>Jak zdobywać żetony?</h2>
+    <h2 class="section-title">Jak zdobywać żetony?</h2>
     <p>
       Graj aktywnie na serwerze Zakon Rycerski.
       Za każde 5 minut aktywnej gry otrzymasz
@@ -87,14 +348,13 @@ footer { text-align: center; padding: 25px; color: #8f8a80; border-top: 1px soli
 </main>
 
 <footer>
-  ⚔ ZAKON RYCERSKI ⚔
+  <strong>⚔ ZAKON RYCERSKI ⚔</strong>
   <p>Oficjalny sklep serwera</p>
 </footer>
 
 <script>
 const SUPABASE_URL =
   "https://ojhhynjtoueuvqalwbld.supabase.co";
-
 const SUPABASE_KEY =
   "sb_publishable_scN1OGrwcB1qREMMz4q8Mg_7cbgtkno";
 
@@ -114,17 +374,16 @@ async function checkShopAPI() {
     );
 
     const data = await response.json();
-
     if (response.ok && data.success) {
       status.textContent = "Połączono ze sklepem!";
-      status.style.color = "#8fd49a";
+      status.style.color = "#315d35";
     } else {
       status.textContent = "Błąd połączenia ze sklepem.";
-      status.style.color = "#e58b80";
+      status.style.color = "#8b3027";
     }
   } catch (error) {
     status.textContent = "Nie udało się połączyć ze sklepem.";
-    status.style.color = "#e58b80";
+    status.style.color = "#8b3027";
     console.error("Shop API error:", error);
   }
 }
